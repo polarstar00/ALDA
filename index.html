@@ -214,8 +214,8 @@
                 datasets: [{
                     label: 'ROC AUC (CV)',
                     data: [0.8857, 0.8394, 0.8480],
-                    borderColor: 'var(--color-primary-bright)',
-                    backgroundColor: 'var(--color-primary-bright)',
+                    borderColor: '#008DDA', // Using direct hex code
+                    backgroundColor: '#008DDA', // Using direct hex code
                     tension: 0.1,
                     borderWidth: 3,
                     pointRadius: 6,
@@ -304,13 +304,13 @@
                     label: '167 Labels (Best AUC Model)',
                     data: [0.8247, 0.7412, 0.7672, 0.8857],
                     backgroundColor: 'rgba(0, 141, 218, 0.7)', // primary-bright
-                    borderColor: 'var(--color-primary-bright)',
+                    borderColor: '#008DDA', // Using direct hex code
                     borderWidth: 1
                 }, {
                     label: '269 Labels (Balanced Model)',
                     data: [0.7838, 0.8096, 0.7957, 0.8480],
                     backgroundColor: 'rgba(65, 201, 226, 0.7)', // accent-cyan
-                    borderColor: 'var(--color-accent-cyan)',
+                    borderColor: '#41C9E2', // Using direct hex code
                     borderWidth: 1
                 }]
             };
@@ -343,7 +343,6 @@
         // --- Chart 3: Feature Importance by Group ---
         const ctx3 = document.getElementById('featureImportanceChart');
         if (ctx3) {
-            // Based on the 269-label model, summing up the importances
             const featureData = {
                 labels: ['수치형 특징 (6개)', 'CheckType OHE (~7개)', 'Mask Group OHE (~7개)', 'Is_Same_Mask (1개)'],
                 datasets: [{
@@ -355,10 +354,10 @@
                         0.023 // Is_Same_Mask
                     ],
                     backgroundColor: [
-                        'var(--color-primary-deep)',
-                        'var(--color-primary-bright)',
-                        'var(--color-accent-cyan)',
-                        'var(--color-accent-light)'
+                        '#004AAD',      // --color-primary-deep
+                        '#008DDA',      // --color-primary-bright
+                        '#41C9E2',      // --color-accent-cyan
+                        '#ACE2E1'       // --color-accent-light
                     ]
                 }]
             };
