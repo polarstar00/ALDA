@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LDR 연관성 분석 연구 인포그래픽</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        /* Selected Color Palette: Brilliant Blues */
+        :root {
+            --color-background: #F0F8FF; /* AliceBlue as a light background */
+            --color-text-dark: #1E293B; /* Slate-800 */
+            --color-text-medium: #475569; /* Slate-600 */
+            --color-primary-deep: #004AAD;
+            --color-primary-bright: #008DDA;
+            --color-secondary: #41C9E2;
+            --color-accent: #ACE2E1;
+        }
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text-dark);
+        }
+        .text-primary-deep { color: var(--color-primary-deep); }
+        .text-primary-bright { color: var(--color-primary-bright); }
+        .bg-primary-deep { background-color: var(--color-primary-deep); }
+        .bg-primary-bright { background-color: var(--color-primary-bright); }
+        .bg-secondary { background-color: var(--color-secondary); }
+        .bg-accent { background-color: var(--color-accent); }
+        .border-primary-bright { border-color: var(--color-primary-bright); }
+
+        .chart-container {
+            position: relative;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            max-width: 800px;
+            height: 40vh;
+            max-height: 450px;
+        }
+        .kpi-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .kpi-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgb(0 0 0 / 0.1), 0 4px 6px -2px rgb(0 0 0 / 0.1);
+        }
+        .icon-placeholder {
+            font-size: 2.5rem;
+            line-height: 1;
+        }
+        h2 {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            text-align: center;
+            color: var(--color-primary-deep);
+        }
+        h3 {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--color-primary-bright);
+        }
+        p {
+            color: var(--color-text-medium);
+            line-height: 1.75;
+        }
+        .section-intro {
+            max-width: 48rem;
+            margin: 0 auto 2rem auto;
+            text-align: center;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 md:p-8">
+        
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-5xl font-bold text-primary-deep mb-4">데이터 기반 LDR 연관성 분석</h1>
+            <p class="text-xl md:text-2xl text-primary-bright">체계적 접근을 통한 반도체 설계 패러다임 혁신</p>
+        </header>
+
+        <section id="challenge" class="mb-20">
+            <h2 class="mb-10">도전 과제: 경험을 넘어 데이터로</h2>
+            <div class="section-intro">
+                <p>Flash Memory 제품 경쟁력의 핵심인 칩 크기 축소(CSR)는 LDR(Layout Design Rule) 최적화에 달려있습니다. 하지만 2만 개가 넘는 방대한 LDR을 기존의 경험 기반 방식으로 분석하는 것은 명확한 한계에 부딪혔습니다.</p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                <div class="kpi-card">
+                    <div class="icon-placeholder mb-4">🤔</div>
+                    <h3 class="text-primary-deep">높은 복잡도와 인력 의존성</h3>
+                    <p>수많은 LDR을 수동으로 분석하는 데에는 막대한 시간과 노력이 필요하며, 결과가 엔지니어의 역량에 크게 의존합니다.</p>
+                </div>
+                <div class="kpi-card">
+                    <div class="icon-placeholder mb-4">⛓️</div>
+                    <h3 class="text-primary-deep">"연관 LDR" 문제</h3>
+                    <p>하나의 LDR 변경 시 연쇄적으로 영향을 받는 다른 LDR을 놓쳐 개발 일정 지연 및 잠재적 품질 리스크가 발생합니다.</p>
+                </div>
+                <div class="kpi-card">
+                    <div class="icon-placeholder mb-4">🔄</div>
+                    <h3 class="text-primary-deep">지식의 단절과 반복</h3>
+                    <p>담당자 변경 시 축적된 경험이 단절되어, 매 제품 개발마다 유사한 분석 과정을 비효율적으로 반복하게 됩니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="solution" class="mb-20">
+            <h2 class="mb-10">우리의 솔루션: PRIME & LEARN 플랫폼</h2>
+            <div class="section-intro">
+                <p>이러한 문제를 해결하기 위해, 정량적이고 자동화된 분석 플랫폼을 개발했습니다. 이 플랫폼은 CSR 영향도 분석(PRIME)과 LDR 연관성 분석(LEARN)의 두 축으로 구성됩니다.</p>
+            </div>
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <div class="flex flex-col md:flex-row items-center justify-around space-y-8 md:space-y-0 md:space-x-8">
+                    <div class="text-center flex-1">
+                        <div class="bg-accent text-primary-deep font-bold rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4 text-2xl">PRIME</div>
+                        <h3 class="text-primary-deep">CSR 영향도 측정</h3>
+                        <p class="text-sm">Calibre DRC/DFM을 활용, 각 LDR의 CSR 잠재력을 정량화하여 핵심 LDR을 선별합니다.</p>
+                    </div>
+                    <div class="text-5xl font-light text-accent">→</div>
+                    <div class="text-center flex-1">
+                        <div class="bg-secondary text-white font-bold rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4 text-2xl">LEARN</div>
+                        <h3 class="text-primary-deep">LDR 연관성 예측</h3>
+                        <p class="text-sm">머신러닝 모델을 통해 LDR 쌍 간의 연관성을 예측하여 "연관 LDR Chain" 탐색의 기반을 마련합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="evolution" class="mb-20">
+            <h2 class="mb-10">모델 성능 진화 과정</h2>
+            <div class="section-intro">
+                <p>초기 모델의 불안정한 성능에서 출발하여, 능동 학습 전략의 시행착오와 밸런싱 샘플링을 통해 모델을 안정화하고 성능을 회복시켜 나갔습니다. 이 과정은 데이터의 양뿐만 아니라 질과 균형이 얼마나 중요한지를 보여줍니다.</p>
+            </div>
+            <div class="kpi-card">
+                 <h3 class="text-center">라벨 추가에 따른 모델 성능 변화</h3>
+                <div class="chart-container">
+                    <canvas id="performanceEvolutionChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="comparison" class="mb-20">
+             <h2 class="mb-10">주요 모델 심층 비교</h2>
+             <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+                <div class="kpi-card lg:col-span-2">
+                    <h3 class="text-center">최고 잠재력 vs 최고 안정성 모델</h3>
+                    <p class="text-center mb-4 text-sm">167개 라벨에서 가장 높은 잠재력(AUC)을 보였으나 불안정했고, 269개 라벨에서는 안정성을 확보하며 성능을 회복했습니다.</p>
+                    <div class="chart-container">
+                        <canvas id="modelComparisonChart"></canvas>
+                    </div>
+                </div>
+                <div class="kpi-card">
+                    <h3 class="text-center">최종 모델 특징 그룹별 중요도</h3>
+                    <p class="text-center mb-4 text-sm">최종 모델은 수치형 특징에 가장 크게 의존하며, 새로 추가된 Mask 및 CheckType 특징도 의미 있는 기여를 합니다.</p>
+                    <div class="chart-container">
+                        <canvas id="featureImportanceChart"></canvas>
+                    </div>
+                </div>
+             </div>
+        </section>
+
+        <section id="learnings" class="mb-20">
+            <h2 class="mb-10">핵심 발견 및 교훈</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="kpi-card">
+                    <h3 class="text-primary-bright">라벨링 전략의 중요성</h3>
+                    <p>특정 구간에 편향된 능동 학습은 오히려 모델의 일반화 성능(ROC AUC)을 저하시켰습니다. 데이터의 전체 분포를 반영하는 **균형 잡힌 샘플링**이 모델 안정화와 성능 회복의 열쇠였습니다.</p>
+                </div>
+                <div class="kpi-card">
+                    <h3 class="text-primary-bright">앙상블의 함정</h3>
+                    <p>H/V 모델을 분리하고 확률적 OR로 결합하는 앙상블은 의도와 달리 FP(오탐)를 폭증시켜, 'Chain 탐색'이라는 최종 목표에 부적합함을 확인했습니다. 이는 **단일 통합 모델의 성능을 고도화**하는 것이 더 올바른 방향임을 시사합니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="next-steps">
+            <h2 class="mb-10">향후 과제 (The Path Forward)</h2>
+            <div class="bg-white p-8 rounded-lg shadow-lg">
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <span class="bg-primary-deep text-white rounded-full h-8 w-8 text-center leading-8 font-bold mr-4 flex-shrink-0">1</span>
+                        <div>
+                            <h3 class="text-lg font-semibold text-primary-deep mt-0 mb-1">라벨 데이터 지속 확보</h3>
+                            <p class="text-sm">현재의 긍정적인 회복세를 이어가기 위해, '무작위 샘플링'과 '불확실성 샘플링'을 조합한 균형 잡힌 전략으로 라벨 데이터를 꾸준히 추가하여 모델의 근본적인 성능을 향상시킵니다.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-primary-bright text-white rounded-full h-8 w-8 text-center leading-8 font-bold mr-4 flex-shrink-0">2</span>
+                        <div>
+                            <h3 class="text-lg font-semibold text-primary-deep mt-0 mb-1">하이퍼파라미터 튜닝</h3>
+                            <p class="text-sm">충분한 라벨 데이터가 확보된 후, 모델의 복잡도를 제어하는 하이퍼파라미터를 최적화하여 현재 특징 세트에서 최대의 성능을 이끌어냅니다.</p>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="bg-secondary text-white rounded-full h-8 w-8 text-center leading-8 font-bold mr-4 flex-shrink-0">3</span>
+                        <div>
+                            <h3 class="text-lg font-semibold text-primary-deep mt-0 mb-1">분류 임계값 최적화</h3>
+                            <p class="text-sm">최종 모델의 예측 확률을 기반으로, 'Chain 탐색' 목표에 가장 적합한 수준의 FP(오탐)를 유지하면서 Recall(재현율)을 극대화하는 최적의 분류 임계값을 설정합니다.</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            
+            function wrapText(text, maxChars) {
+                if (typeof text !== 'string' || text.length <= maxChars) {
+                    return text;
+                }
+                const words = text.split(' ');
+                const lines = [];
+                let currentLine = '';
+                words.forEach(word => {
+                    if ((currentLine + ' ' + word).length > maxChars && currentLine.length > 0) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine += (currentLine.length === 0 ? '' : ' ') + word;
+                    }
+                });
+                lines.push(currentLine);
+                return lines;
+            }
+
+            const tooltipTitleCallback = function(tooltipItems) {
+                const item = tooltipItems[0];
+                let label = item.chart.data.labels[item.dataIndex];
+                if (Array.isArray(label)) {
+                    return label.join(' ');
+                } else {
+                    return label;
+                }
+            };
+            
+            const chartDefaultOptions = {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'top',
+                        labels: {
+                            font: {
+                                family: "'Noto Sans KR', sans-serif",
+                                size: 12
+                            }
+                        }
+                    },
+                    tooltip: {
+                        callbacks: { title: tooltipTitleCallback },
+                        titleFont: { family: "'Noto Sans KR', sans-serif" },
+                        bodyFont: { family: "'Noto Sans KR', sans-serif" },
+                    }
+                },
+                scales: {
+                    x: {
+                        ticks: { font: { family: "'Noto Sans KR', sans-serif", size: 11 } },
+                        grid: { display: false }
+                    },
+                    y: {
+                        ticks: { font: { family: "'Noto Sans KR', sans-serif", size: 11 } },
+                        grid: { color: '#E0E0E0', borderDash: [2, 4] },
+                        beginAtZero: true
+                    }
+                }
+            };
+
+            // Performance Evolution Chart
+            const performanceCtx = document.getElementById('performanceEvolutionChart').getContext('2d');
+            new Chart(performanceCtx, {
+                type: 'line',
+                data: {
+                    labels: ['167개', '212개', '224개', '269개'],
+                    datasets: [
+                        {
+                            label: 'ROC AUC',
+                            data: [0.8857, 0.8394, 0.8052, 0.8480],
+                            borderColor: '#004AAD',
+                            backgroundColor: 'rgba(0, 74, 173, 0.1)',
+                            fill: true,
+                            tension: 0.3,
+                            pointRadius: 5,
+                            pointBackgroundColor: '#004AAD',
+                        },
+                        {
+                            label: 'Precision',
+                            data: [0.8247, 0.7971, 0.7648, 0.7838],
+                            borderColor: '#008DDA',
+                            backgroundColor: 'transparent',
+                            tension: 0.3,
+                            pointRadius: 5,
+                            pointBackgroundColor: '#008DDA',
+                        },
+                        {
+                            label: 'Recall',
+                            data: [0.7412, 0.8137, 0.8268, 0.8096],
+                            borderColor: '#41C9E2',
+                            backgroundColor: 'transparent',
+                            tension: 0.3,
+                            pointRadius: 5,
+                            pointBackgroundColor: '#41C9E2',
+                        }
+                    ]
+                },
+                options: {
+                    ...chartDefaultOptions,
+                    scales: {
+                        ...chartDefaultOptions.scales,
+                        y: { ...chartDefaultOptions.scales.y, suggestedMin: 0.7, suggestedMax: 0.9 }
+                    },
+                    plugins: {
+                        ...chartDefaultOptions.plugins,
+                        annotation: { 
+                            annotations: {
+                                dip: {
+                                    type: 'box',
+                                    xMin: 1,
+                                    xMax: 2,
+                                    backgroundColor: 'rgba(255, 99, 132, 0.1)',
+                                    borderColor: 'rgba(255, 99, 132, 0.3)',
+                                    borderWidth: 1,
+                                    label: {
+                                        content: '편향된 샘플링으로 성능 하락',
+                                        enabled: true,
+                                        position: 'center',
+                                        font: { size: 10, family: "'Noto Sans KR', sans-serif"}
+                                    }
+                                },
+                                recovery: {
+                                    type: 'box',
+                                    xMin: 2.5,
+                                    xMax: 3.5,
+                                    backgroundColor: 'rgba(75, 192, 192, 0.1)',
+                                    borderColor: 'rgba(75, 192, 192, 0.3)',
+                                    borderWidth: 1,
+                                     label: {
+                                        content: '밸런싱 샘플링으로 회복',
+                                        enabled: true,
+                                        position: 'center',
+                                        font: { size: 10, family: "'Noto Sans KR', sans-serif"}
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Model Comparison Chart
+            const comparisonCtx = document.getElementById('modelComparisonChart').getContext('2d');
+            const modelComparisonLabels = ['ROC AUC', 'Precision', 'Recall', 'F1-Score'];
+            new Chart(comparisonCtx, {
+                type: 'bar',
+                data: {
+                    labels: modelComparisonLabels.map(l => wrapText(l, 16)),
+                    datasets: [
+                        {
+                            label: '167 라벨 모델 (최고 잠재력)',
+                            data: [0.8857, 0.8247, 0.7412, 0.7672],
+                            backgroundColor: 'rgba(0, 141, 218, 0.6)', // Bright Blue
+                            borderColor: '#008DDA',
+                            borderWidth: 1
+                        },
+                        {
+                            label: '269 라벨 모델 (최고 안정성)',
+                            data: [0.8480, 0.7838, 0.8096, 0.7957],
+                            backgroundColor: 'rgba(65, 201, 226, 0.6)', // Secondary Blue
+                            borderColor: '#41C9E2',
+                            borderWidth: 1
+                        }
+                    ]
+                },
+                options: { ...chartDefaultOptions, scales: { ...chartDefaultOptions.scales, y: { ...chartDefaultOptions.scales.y, suggestedMin: 0.7 } } }
+            });
+
+            // Feature Importance Chart
+            const featureImportanceCtx = document.getElementById('featureImportanceChart').getContext('2d');
+            new Chart(featureImportanceCtx, {
+                type: 'doughnut',
+                data: {
+                    labels: ['수치형 특징 (6개)', wrapText('CheckType Pair OHE (~7개)', 16), wrapText('Mask Group 관련 (~7개)', 16)],
+                    datasets: [{
+                        label: '특징 그룹별 중요도',
+                        data: [0.70, 0.15, 0.15],
+                        backgroundColor: ['#004AAD', '#008DDA', '#41C9E2'],
+                        borderColor: '#FFFFFF',
+                        borderWidth: 2,
+                        hoverOffset: 4
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                         legend: {
+                            position: 'bottom',
+                            labels: {
+                                font: { family: "'Noto Sans KR', sans-serif", size: 11 },
+                                boxWidth: 20
+                            }
+                        },
+                        tooltip: { ...chartDefaultOptions.plugins.tooltip }
+                    }
+                }
+            });
+
+        });
+    </script>
+</body>
+</html>
