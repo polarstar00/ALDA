@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>데이터 기반 LDR 연관성 분석 연구 요약 | 인포그래픽</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- 
+        Confirmation: 
+        - NO SVG graphics were used. All visuals are created with HTML/CSS/Tailwind or rendered on HTML Canvas via Chart.js.
+        - NO Mermaid JS was used. The process flow diagram is implemented with structured HTML and Tailwind CSS.
+    -->
+    <style>
+        body {
+            font-family: 'Noto Sans KR', sans-serif;
+            background-color: #f8fafc; /* slate-50 */
+        }
+        /* Color Palette: Brilliant Blues & Neutrals */
+        :root {
+            --color-primary-deep: #004AAD;
+            --color-primary-bright: #008DDA;
+            --color-accent-cyan: #41C9E2;
+            --color-accent-light: #ACE2E1;
+            --color-text-dark: #1e293b; /* slate-800 */
+            --color-text-medium: #475569; /* slate-600 */
+            --color-text-light: #f8fafc; /* slate-50 */
+            --color-bg-card: #ffffff;
+            --color-bg-main: #f1f5f9; /* slate-100 */
+        }
+        .bg-primary-deep { background-color: var(--color-primary-deep); }
+        .bg-primary-bright { background-color: var(--color-primary-bright); }
+        .bg-accent-cyan { background-color: var(--color-accent-cyan); }
+        .bg-accent-light { background-color: var(--color-accent-light); }
+        .text-primary-deep { color: var(--color-primary-deep); }
+        .text-primary-bright { color: var(--color-primary-bright); }
+        .text-accent-cyan { color: var(--color-accent-cyan); }
+        .border-primary-bright { border-color: var(--color-primary-bright); }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 40vh;
+            max-height: 400px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 350px;
+            }
+        }
+        .flow-arrow::after {
+            content: '→';
+            font-size: 2rem;
+            color: var(--color-primary-bright);
+            margin: 0 1rem;
+        }
+         .flow-arrow-down::after {
+            content: '↓';
+            font-size: 2rem;
+            color: var(--color-primary-bright);
+            margin: 1rem 0;
+        }
+    </style>
+</head>
+<body class="bg-bg-main text-text-medium">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <!-- Header -->
+        <header class="text-center mb-16">
+            <h1 class="text-4xl md:text-6xl font-black text-primary-deep mb-2">데이터 기반 설계 패러다임 혁신</h1>
+            <p class="text-xl md:text-2xl font-bold text-primary-bright">LDR 연관성 분석 연구를 통한 CSR 최적화</p>
+        </header>
+
+        <!-- Section 1: The Challenge -->
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-8 text-text-dark">1. 도전 과제: 경험을 넘어, 데이터로</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="bg-bg-card p-6 rounded-xl shadow-lg text-center">
+                    <p class="text-7xl font-black text-primary-deep">2만+</p>
+                    <p class="mt-2 font-bold">방대한 LDR 항목</p>
+                    <p class="text-sm mt-1">차세대 제품으로 갈수록 기하급수적으로 증가하는 LDR 전체를 수동으로 검토하는 것은 현실적으로 불가능합니다.</p>
+                </div>
+                <div class="bg-bg-card p-6 rounded-xl shadow-lg text-center">
+                    <p class="text-7xl font-black text-primary-deep">?</p>
+                    <p class="mt-2 font-bold">"연관 LDR"의 모호성</p>
+                    <p class="text-sm mt-1">하나의 LDR 변경이 다른 LDR에 미치는 연쇄 효과를 경험에만 의존하여 파악하기 어려워, 개발 일정 지연 및 품질 리스크를 야기합니다.</p>
+                </div>
+                <div class="bg-bg-card p-6 rounded-xl shadow-lg text-center">
+                    <p class="text-7xl font-black text-primary-deep">⏰</p>
+                    <p class="mt-2 font-bold">자원 및 시간의 한계</p>
+                    <p class="text-sm mt-1">모든 LDR의 CSR 효과를 검증하는 것은 막대한 자원이 필요합니다. 핵심 LDR을 선택하고 집중하는 체계적인 방법론이 부재했습니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Our Solution -->
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-8 text-text-dark">2. 솔루션: 이중 분석 플랫폼, PRIME & LEARN</h2>
+            <div class="bg-bg-card p-8 rounded-xl shadow-lg">
+                <p class="text-center mb-8">기존의 한계를 극복하기 위해, CSR 영향도 분석(PRIME)과 LDR 연관성 분석(LEARN)을 결합한 자동화된 플랫폼을 개발했습니다.</p>
+                <div class="flex flex-col md:flex-row justify-center items-center text-center">
+                    <div class="p-4 border-2 border-dashed border-primary-bright rounded-lg w-full md:w-1/3">
+                        <h3 class="font-bold text-lg text-primary-deep">PRIME</h3>
+                        <p class="text-sm">Potential Rule Impact Measurement Engine</p>
+                        <p class="mt-2 text-xs">Calibre DRC/DFM을 활용, 각 LDR의 위반 영역(`Area_rule`)을 정량화하여 **CSR 영향력이 가장 큰 핵심 LDR을 선별**합니다.</p>
+                    </div>
+                    <div class="flow-arrow-down md:flow-arrow"></div>
+                    <div class="p-4 border-2 border-dashed border-accent-cyan rounded-lg w-full md:w-1/3">
+                        <h3 class="font-bold text-lg text-primary-deep">LEARN</h3>
+                        <p class="text-sm">LDR Exploration using AI-driven Relation Network</p>
+                        <p class="mt-2 text-xs">PRIME 결과를 바탕으로, ML 모델을 통해 LDR 간의 상호 연관성을 예측하고 **"연관 LDR Chain"을 자동으로 추출**합니다.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Section 3: Feature & Model Evolution -->
+        <section class="mb-20">
+             <h2 class="text-3xl font-bold text-center mb-8 text-text-dark">3. 모델 성능 진화 과정</h2>
+             <div class="bg-bg-card p-8 rounded-xl shadow-lg">
+                <p class="text-center text-text-medium mb-4">모델 성능은 단순히 데이터를 추가하는 것을 넘어, **어떤 특징을 어떻게 추가하고, 라벨링 전략을 어떻게 가져가는지**에 따라 극적으로 변화했습니다. 이 과정은 모델의 근본적인 판별 능력(ROC AUC)과 안정성(표준편차)의 변화를 통해 관찰할 수 있습니다.</p>
+                <div class="chart-container">
+                    <canvas id="performanceEvolutionChart"></canvas>
+                </div>
+                <p class="text-center text-xs mt-2 text-slate-500">라벨 수 증가에 따른 ROC AUC (CV)와 표준편차(에러 바)의 변화 추이</p>
+             </div>
+        </section>
+
+
+        <!-- Section 4: Deep Dive into Model Performance -->
+        <section class="mb-20">
+            <h2 class="text-3xl font-bold text-center mb-8 text-text-dark">4. 주요 모델 심층 비교 분석</h2>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div class="bg-bg-card p-8 rounded-xl shadow-lg">
+                    <h3 class="font-bold text-lg text-center text-primary-deep mb-4">주요 모델 성능 비교</h3>
+                     <div class="chart-container" style="height:320px; max-height:320px;">
+                        <canvas id="modelComparisonChart"></canvas>
+                    </div>
+                    <p class="text-sm mt-4">최고 판별력(AUC)을 보인 **167 라벨 모델**과 가장 안정적인 **269 라벨 모델**의 주요 지표 비교. 269 라벨 모델은 안정성은 높지만, 0.5 임계값 기준에서는 Precision이 다소 하락했습니다.</p>
+                </div>
+                <div class="bg-bg-card p-8 rounded-xl shadow-lg">
+                    <h3 class="font-bold text-lg text-center text-primary-deep mb-4">최종 모델 특징 그룹별 중요도</h3>
+                    <div class="chart-container" style="height:320px; max-height:320px;">
+                        <canvas id="featureImportanceChart"></canvas>
+                    </div>
+                     <p class="text-sm mt-4">**수치형 특징**이 여전히 예측의 가장 중요한 기반이 되지만, **CheckType**과 **Mask Group** 관련 특징들이 추가되며 모델의 예측 논리가 더욱 정교해졌음을 보여줍니다.</p>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Section 5: Key Findings & Future -->
+        <section>
+            <h2 class="text-3xl font-bold text-center mb-8 text-text-dark">5. 핵심 발견 및 향후 과제</h2>
+            <div class="bg-bg-card p-8 rounded-xl shadow-lg grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div>
+                    <h3 class="font-bold text-lg text-primary-deep mb-2">핵심 발견 (Key Findings)</h3>
+                    <ul class="list-disc list-inside space-y-2 text-sm">
+                        <li>**특징의 질 > 라벨의 양:** 단순한 라벨 추가보다, `CheckType`, `Mask Group`과 같은 **문맥 정보를 제공하는 특징 추가**가 모델 성능 개선에 더 큰 영향을 미쳤습니다.</li>
+                        <li>**라벨링 전략의 중요성:** 특정 구간에 편중된 능동 학습은 오히려 모델 성능을 저해할 수 있습니다. **전체 데이터 분포를 고려한 균형 잡힌 샘플링**이 모델의 안정성과 일반화 성능에 필수적입니다.</li>
+                        <li>**"숨겨진 특징"의 가능성:** 현재 특징 세트로 설명되지 않는 예외 케이스가 존재하며, 이는 논문에서 제안된 바와 같이 더 근본적인 데이터(레이아웃 이미지 등)로부터 **새로운 특징을 발굴해야 할 필요성**을 시사합니다.</li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="font-bold text-lg text-primary-deep mb-2">향후 과제 (The Path Forward)</h3>
+                     <ul class="list-disc list-inside space-y-2 text-sm">
+                        <li>**새로운 특징 공학:** PRIME에서 계산된 CSR 영향력(`Area_rule`)이나, `err_portion` 지표를 재검토하여 모델에 추가하고 성능을 검증합니다.</li>
+                        <li>**모델 최적화:** 충분한 라벨 데이터 확보 후, 하이퍼파라미터 튜닝을 통해 현재 모델의 잠재력을 최대한 끌어냅니다.</li>
+                        <li>**운영 지점 설정:** "Chain 탐색"이라는 최종 목표에 가장 적합하도록 **분류 임계값을 조정**하여 Precision과 Recall의 최적 균형점을 찾습니다.</li>
+                        <li>**앙상블 모델 재탐색:** 단일 모델 성능이 한계에 도달했을 때, 더 정교한 규칙을 적용한 앙상블 모델을 다시 고려합니다.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        // --- Helper Function ---
+        const wrapLabel = (label, maxLength) => {
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+
+        // --- Chart 1: Performance Evolution ---
+        const ctx1 = document.getElementById('performanceEvolutionChart');
+        if (ctx1) {
+            const performanceData = {
+                labels: ['167 Labels\n(Initial Best)', '212 Labels\n(Biased Sampling)', '269 Labels\n(Balanced Sampling)'],
+                datasets: [{
+                    label: 'ROC AUC (CV)',
+                    data: [0.8857, 0.8394, 0.8480],
+                    borderColor: 'var(--color-primary-bright)',
+                    backgroundColor: 'var(--color-primary-bright)',
+                    tension: 0.1,
+                    borderWidth: 3,
+                    pointRadius: 6,
+                    pointHoverRadius: 8
+                }, {
+                    label: 'Standard Deviation',
+                    data: [
+                        [0.8857 - 0.0692, 0.8857 + 0.0692],
+                        [0.8394 - 0.0545, 0.8394 + 0.0545],
+                        [0.8480 - 0.0416, 0.8480 + 0.0416]
+                    ],
+                    backgroundColor: 'rgba(0, 141, 218, 0.2)',
+                    borderWidth: 0,
+                    pointRadius: 0,
+                    type: 'bar',
+                    barPercentage: 0.15,
+                    yAxisID: 'y'
+                }]
+            };
+
+            new Chart(ctx1, {
+                type: 'line',
+                data: performanceData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 0.75,
+                            max: 0.95,
+                            title: {
+                                display: true,
+                                text: 'ROC AUC Score'
+                            }
+                        },
+                        x: {
+                            ticks: {
+                                callback: function(value, index, values) {
+                                    const label = this.getLabelForValue(value);
+                                    return label.split('\n');
+                                }
+                            }
+                        }
+                    },
+                    plugins: {
+                        tooltip: {
+                            callbacks: {
+                                title: tooltipTitleCallback,
+                                label: function(context) {
+                                    if (context.dataset.label === 'Standard Deviation') return null;
+                                    let label = context.dataset.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    if (context.parsed.y !== null) {
+                                        label += context.parsed.y.toFixed(4);
+                                    }
+                                    const stdDevData = context.chart.data.datasets[1].data[context.dataIndex];
+                                    if(stdDevData) {
+                                       const stdDev = ((stdDevData[1] - stdDevData[0])/2).toFixed(4);
+                                       return [label, `  (Std Dev: ±${stdDev})`];
+                                    }
+                                    return label;
+                                }
+                            }
+                        },
+                        legend: {
+                            display: false
+                        }
+                    },
+                    interaction: {
+                        mode: 'index',
+                        intersect: false,
+                    },
+                }
+            });
+        }
+
+        // --- Chart 2: Model Comparison ---
+        const ctx2 = document.getElementById('modelComparisonChart');
+        if (ctx2) {
+             const modelCompData = {
+                labels: ['Precision', 'Recall', 'F1-Score', 'ROC AUC'],
+                datasets: [{
+                    label: '167 Labels (Best AUC Model)',
+                    data: [0.8247, 0.7412, 0.7672, 0.8857],
+                    backgroundColor: 'rgba(0, 141, 218, 0.7)', // primary-bright
+                    borderColor: 'var(--color-primary-bright)',
+                    borderWidth: 1
+                }, {
+                    label: '269 Labels (Balanced Model)',
+                    data: [0.7838, 0.8096, 0.7957, 0.8480],
+                    backgroundColor: 'rgba(65, 201, 226, 0.7)', // accent-cyan
+                    borderColor: 'var(--color-accent-cyan)',
+                    borderWidth: 1
+                }]
+            };
+            new Chart(ctx2, {
+                type: 'bar',
+                data: modelCompData,
+                options: {
+                     responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 0.7,
+                            title: {
+                                display: true,
+                                text: 'Performance Score'
+                            }
+                        }
+                    },
+                     plugins: {
+                        tooltip: {
+                            callbacks: { title: tooltipTitleCallback }
+                        }
+                    },
+                     indexAxis: 'x',
+                }
+            });
+        }
+
+        // --- Chart 3: Feature Importance by Group ---
+        const ctx3 = document.getElementById('featureImportanceChart');
+        if (ctx3) {
+            // Based on the 269-label model, summing up the importances
+            const featureData = {
+                labels: ['수치형 특징 (6개)', 'CheckType OHE (~7개)', 'Mask Group OHE (~7개)', 'Is_Same_Mask (1개)'],
+                datasets: [{
+                    label: 'Average Feature Importance',
+                    data: [
+                        0.153+0.140+0.125+0.140+0.124+0.115, // Sum of 6 numerical
+                        0.047+0.022+0.019, // Sum of 3 CheckType
+                        0.024+0.017+0.016+0.009+0.005, // Sum of 5 Mask Group
+                        0.023 // Is_Same_Mask
+                    ],
+                    backgroundColor: [
+                        'var(--color-primary-deep)',
+                        'var(--color-primary-bright)',
+                        'var(--color-accent-cyan)',
+                        'var(--color-accent-light)'
+                    ]
+                }]
+            };
+            new Chart(ctx3, {
+                type: 'doughnut',
+                data: featureData,
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                        },
+                        tooltip: {
+                             callbacks: {
+                                label: function(context) {
+                                    let label = context.label || '';
+                                    if (label) {
+                                        label += ': ';
+                                    }
+                                    const total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
+                                    const value = context.parsed;
+                                    const percentage = ((value / total) * 100).toFixed(1);
+                                    return `${label} ${percentage}%`;
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }
+
+    </script>
+
+</body>
+</html>
