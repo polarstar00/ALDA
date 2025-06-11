@@ -3,394 +3,448 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>데이터 기반 LDR 연관성 분석 연구 요약 | 인포그래픽</title>
+    <title>AI 및 데이터 기반 낸드플래시 개발 혁신 전략</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700;900&display=swap" rel="stylesheet">
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <!-- 
-        Confirmation: 
-        - NO SVG graphics were used. All visuals are created with HTML/CSS/Tailwind or rendered on HTML Canvas via Chart.js.
-        - NO Mermaid JS was used. The process flow diagram is implemented with structured HTML and Tailwind CSS.
-    -->
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&display=swap" rel="stylesheet">
     <style>
         body {
             font-family: 'Noto Sans KR', sans-serif;
-            background-color: #f8fafc; /* slate-50 */
+            background-color: #F8F9FA;
         }
-        /* Color Palette: Brilliant Blues & Neutrals */
-        :root {
-            --color-primary-deep: #004AAD;
-            --color-primary-bright: #008DDA;
-            --color-accent-cyan: #41C9E2;
-            --color-accent-light: #ACE2E1;
-            --color-text-dark: #1e293b; /* slate-800 */
-            --color-text-medium: #475569; /* slate-600 */
-            --color-text-light: #f8fafc; /* slate-50 */
-            --color-bg-card: #ffffff;
-            --color-bg-main: #f1f5f9; /* slate-100 */
-        }
-        .bg-primary-deep { background-color: var(--color-primary-deep); }
-        .bg-primary-bright { background-color: var(--color-primary-bright); }
-        .bg-accent-cyan { background-color: var(--color-accent-cyan); }
-        .bg-accent-light { background-color: var(--color-accent-light); }
-        .text-primary-deep { color: var(--color-primary-deep); }
-        .text-primary-bright { color: var(--color-primary-bright); }
-        .text-accent-cyan { color: var(--color-accent-cyan); }
-        .border-primary-bright { border-color: var(--color-primary-bright); }
         .chart-container {
             position: relative;
             width: 100%;
-            height: 40vh;
-            max-height: 400px;
+            max-width: 600px;
             margin-left: auto;
             margin-right: auto;
+            height: 300px;
+            max-height: 400px;
         }
         @media (min-width: 768px) {
             .chart-container {
                 height: 350px;
             }
         }
-        .flow-arrow::after {
-            content: '→';
+        .flow-arrow {
             font-size: 2rem;
-            color: var(--color-primary-bright);
-            margin: 0 1rem;
+            color: #94D2BD;
+            line-height: 1;
         }
-         .flow-arrow-down::after {
-            content: '↓';
-            font-size: 2rem;
-            color: var(--color-primary-bright);
-            margin: 1rem 0;
+        .kpi-value {
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.1;
+            color: #0A9396;
+        }
+        .kpi-label {
+            font-size: 1.1rem;
+            color: #005F73;
+            font-weight: 500;
+        }
+        .card {
+            background-color: white;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        h1, h2, h3 {
+            color: #001219;
+        }
+        h2 {
+            border-bottom: 2px solid #94D2BD;
+            padding-bottom: 0.5rem;
+            margin-bottom: 1.5rem;
         }
     </style>
 </head>
-<body class="bg-bg-main text-text-medium">
-
+<body class="bg-gray-50 text-gray-800">
+    <!-- Color Palette: Brilliant Blues (and accents) -->
     <div class="container mx-auto p-4 md:p-8">
-
-        <!-- Header -->
-        <header class="text-center mb-16">
-            <h1 class="text-4xl md:text-6xl font-black text-primary-deep mb-2">데이터 기반 설계 패러다임 혁신</h1>
-            <p class="text-xl md:text-2xl font-bold text-primary-bright">LDR 연관성 분석 연구를 통한 CSR 최적화</p>
+        
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold mb-4 text-[#005F73]">AI와 데이터가 이끄는 낸드플래시 개발 혁신</h1>
+            <p class="text-lg text-gray-600 max-w-3xl mx-auto">기하급수적으로 증가하는 기술 복잡성 속에서, 데이터 기반의 자동화된 분석 및 예측 플랫폼이 어떻게 낸드플래시의 미래 경쟁력을 확보하는지 조망합니다.</p>
         </header>
 
-        <!-- Section 1: The Challenge -->
-        <section class="mb-20">
-            <h2 class="text-3xl font-bold text-center mb-8 text-text-dark">1. 도전 과제: 경험을 넘어, 데이터로</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="bg-bg-card p-6 rounded-xl shadow-lg text-center">
-                    <p class="text-7xl font-black text-primary-deep">2만+</p>
-                    <p class="mt-2 font-bold">방대한 LDR 항목</p>
-                    <p class="text-sm mt-1">차세대 제품으로 갈수록 기하급수적으로 증가하는 LDR 전체를 수동으로 검토하는 것은 현실적으로 불가능합니다.</p>
+        <section id="market-challenge" class="mb-16">
+            <h2 class="text-3xl font-bold mb-6">1. 끝없는 도전: 고집적화와 시장 경쟁</h2>
+            <p class="mb-8 text-gray-700">낸드플래시 시장은 폭발적으로 성장하고 있지만, 기술의 발전은 '집적도의 한계'라는 거대한 벽에 끊임없이 부딪히고 있습니다. 웨이퍼 한 장에서 더 많은 칩을 생산하기 위한 칩 크기 축소(CSR)는 이제 생존과 직결된 과제가 되었습니다.</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="text-xl font-bold text-center mb-4">글로벌 낸드플래시 시장 성장 전망</h3>
+                    <div class="chart-container h-64 md:h-80">
+                        <canvas id="marketGrowthChart"></canvas>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-4 text-center">지속적인 데이터 수요 증가에 힘입어 낸드플래시 시장은 안정적인 성장을 지속할 것으로 예상됩니다. 기술 리더십을 통한 원가 경쟁력 확보가 시장 점유율을 결정하는 핵심 요인입니다.</p>
                 </div>
-                <div class="bg-bg-card p-6 rounded-xl shadow-lg text-center">
-                    <p class="text-7xl font-black text-primary-deep">?</p>
-                    <p class="mt-2 font-bold">"연관 LDR"의 모호성</p>
-                    <p class="text-sm mt-1">하나의 LDR 변경이 다른 LDR에 미치는 연쇄 효과를 경험에만 의존하여 파악하기 어려워, 개발 일정 지연 및 품질 리스크를 야기합니다.</p>
-                </div>
-                <div class="bg-bg-card p-6 rounded-xl shadow-lg text-center">
-                    <p class="text-7xl font-black text-primary-deep">⏰</p>
-                    <p class="mt-2 font-bold">자원 및 시간의 한계</p>
-                    <p class="text-sm mt-1">모든 LDR의 CSR 효과를 검증하는 것은 막대한 자원이 필요합니다. 핵심 LDR을 선택하고 집중하는 체계적인 방법론이 부재했습니다.</p>
+                <div class="card flex flex-col justify-center items-center text-center p-8">
+                     <div class="mb-6">
+                        <p class="kpi-label">차세대 제품 LDR 개수</p>
+                        <p class="kpi-value">> 20,000</p>
+                    </div>
+                     <div>
+                        <p class="kpi-label">수동 분석 시 리스크</p>
+                        <p class="kpi-value text-[#AE2012]">+35%</p>
+                        <p class="text-gray-500 text-sm">(개발 기간 및 비용 증가)</p>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-6">기술이 진화할수록 레이아웃 설계 규칙(LDR)의 수는 기하급수적으로 증가하며, 이는 개발 복잡성을 가중시키고 잠재적 리스크를 증대시킵니다.</p>
                 </div>
             </div>
         </section>
 
-        <!-- Section 2: Our Solution -->
-        <section class="mb-20">
-            <h2 class="text-3xl font-bold text-center mb-8 text-text-dark">2. 솔루션: 이중 분석 플랫폼, PRIME & LEARN</h2>
-            <div class="bg-bg-card p-8 rounded-xl shadow-lg">
-                <p class="text-center mb-8">기존의 한계를 극복하기 위해, CSR 영향도 분석(PRIME)과 LDR 연관성 분석(LEARN)을 결합한 자동화된 플랫폼을 개발했습니다.</p>
-                <div class="flex flex-col md:flex-row justify-center items-center text-center">
-                    <div class="p-4 border-2 border-dashed border-primary-bright rounded-lg w-full md:w-1/3">
-                        <h3 class="font-bold text-lg text-primary-deep">PRIME</h3>
-                        <p class="text-sm">Potential Rule Impact Measurement Engine</p>
-                        <p class="mt-2 text-xs">Calibre DRC/DFM을 활용, 각 LDR의 위반 영역(`Area_rule`)을 정량화하여 **CSR 영향력이 가장 큰 핵심 LDR을 선별**합니다.</p>
+        <section id="csr-bottleneck" class="mb-16">
+            <h2 class="text-3xl font-bold mb-6">2. 설계의 병목: 복잡한 LDR과 '연관 규칙'의 덫</h2>
+            <p class="mb-8 text-gray-700">칩 크기 축소(CSR)의 열쇠는 수만 개의 레이아웃 설계 규칙(LDR) 최적화에 있습니다. 하지만 기존의 경험 기반 수동 분석 방식은 비효율적일 뿐만 아니라, 하나의 규칙 변경이 다른 규칙에 영향을 미치는 '연관 LDR' 문제를 예측하기 어려워 개발 후반에 큰 리스크를 야기합니다.</p>
+            <div class="card">
+                 <h3 class="text-xl font-bold text-center mb-6">기존의 경험 기반 LDR 분석 프로세스와 한계점</h3>
+                 <div class="flex flex-col md:flex-row items-center justify-around space-y-4 md:space-y-0 md:space-x-4">
+                     <div class="text-center p-4 border-2 border-gray-200 rounded-lg w-full md:w-1/4">
+                         <div class="text-4xl mb-2">🤔</div>
+                         <h4 class="font-bold">후보 선정</h4>
+                         <p class="text-sm text-gray-600">엔지니어의 경험에 의존하여 검토할 LDR 수동 선택</p>
+                     </div>
+                     <div class="flow-arrow md:rotate-0 rotate-90">→</div>
+                     <div class="text-center p-4 border-2 border-gray-200 rounded-lg w-full md:w-1/4">
+                         <div class="text-4xl mb-2">🧩</div>
+                         <h4 class="font-bold">연관성 추론</h4>
+                         <p class="text-sm text-gray-600">숨겨진 연관 LDR을 직관으로 예측 (누락 위험 높음)</p>
+                     </div>
+                     <div class="flow-arrow md:rotate-0 rotate-90">→</div>
+                      <div class="text-center p-4 border-2 border-red-200 bg-red-50 rounded-lg w-full md:w-1/4">
+                         <div class="text-4xl mb-2">💣</div>
+                         <h4 class="font-bold text-red-700">후공정 문제 발생</h4>
+                         <p class="text-sm text-red-600">예상치 못한 규칙 충돌로 설계 재작업, 일정 지연</p>
+                     </div>
+                 </div>
+                 <p class="text-center mt-6 text-gray-700 font-medium">이러한 비체계적 접근은 시간, 비용, 품질 모든 측면에서 심각한 문제를 야기합니다.</p>
+            </div>
+        </section>
+
+        <section id="prime-learn" class="mb-16">
+            <h2 class="text-3xl font-bold mb-6">3. 해법의 제시: 데이터 기반 LDR 분석 플랫폼 PRIME & LEARN</h2>
+            <p class="mb-8 text-gray-700">PRIME & LEARN은 비정형 레이아웃 데이터에서 정량적 통찰력을 추출하여 LDR 분석을 자동화합니다. PRIME이 CSR 영향력이 큰 규칙을 식별하고, LEARN이 기계 학습으로 연관 규칙을 예측하여 최적의 의사결정을 지원합니다.</p>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="text-xl font-bold text-center mb-4">PRIME: CSR 영향력 상위 LDR 자동 식별</h3>
+                    <div class="chart-container h-80">
+                        <canvas id="primeChart"></canvas>
                     </div>
-                    <div class="flow-arrow-down md:flow-arrow"></div>
-                    <div class="p-4 border-2 border-dashed border-accent-cyan rounded-lg w-full md:w-1/3">
-                        <h3 class="font-bold text-lg text-primary-deep">LEARN</h3>
-                        <p class="text-sm">LDR Exploration using AI-driven Relation Network</p>
-                        <p class="mt-2 text-xs">PRIME 결과를 바탕으로, ML 모델을 통해 LDR 간의 상호 연관성을 예측하고 **"연관 LDR Chain"을 자동으로 추출**합니다.</p>
+                    <p class="text-sm text-gray-600 mt-4 text-center">PRIME은 각 규칙이 잠재적으로 제약하는 면적($Area_{rule}$)을 정량화하여 CSR 기여도 순위를 제공합니다. 이를 통해 한정된 자원을 가장 중요한 규칙에 집중할 수 있습니다.</p>
+                </div>
+                 <div class="card">
+                    <h3 class="text-xl font-bold text-center mb-4">LEARN: AI 기반 연관 LDR Chain 예측</h3>
+                    <div class="p-4 flex flex-col items-center justify-center h-full">
+                        <div class="relative w-full h-80">
+                            <!-- Central Node -->
+                            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-[#0A9396] text-white w-24 h-24 rounded-full flex items-center justify-center text-center font-bold shadow-lg">Rule A (상위)</div>
+                            
+                            <!-- Connecting Lines and Satellite Nodes -->
+                             <div class="absolute top-1/2 left-1/2 w-px h-20 bg-gray-300" style="transform: translate(-50%, -100%) rotate(30deg); transform-origin: bottom;"></div>
+                            <div class="absolute top-[28%] left-[65%] -translate-x-1/2 -translate-y-1/2 bg-white border-2 border-[#EE9B00] text-[#CA6702] w-20 h-20 rounded-full flex items-center justify-center text-center shadow-md">Rule Z</div>
+
+                            <div class="absolute top-1/2 left-1/2 w-px h-24 bg-gray-300" style="transform: translate(-50%, -100%) rotate(150deg); transform-origin: bottom;"></div>
+                            <div class="absolute top-[25%] left-[20%] -translate-x-1/2 -translate-y-1/2 bg-white border-2 border-gray-400 w-20 h-20 rounded-full flex items-center justify-center text-center shadow">Rule B</div>
+                            
+                            <div class="absolute top-1/2 left-1/2 w-px h-24 bg-gray-300" style="transform: translate(-50%, 0) rotate(-60deg); transform-origin: top;"></div>
+                            <div class="absolute top-[75%] left-[20%] -translate-x-1/2 -translate-y-1/2 bg-white border-2 border-gray-400 w-20 h-20 rounded-full flex items-center justify-center text-center shadow">Rule C</div>
+                        </div>
+                         <p class="text-sm text-gray-600 mt-4 text-center">LEARN은 기하학적 연관성 지표(AGA Index)를 학습하여, Rule A 변경 시 직접적인 연관성이 없어 보이는 B, C 규칙도 Rule Z를 통해 함께 변경해야 함을 예측합니다.</p>
                     </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="yield-challenge" class="mb-16">
+            <h2 class="text-3xl font-bold mb-6">4. 또 다른 전장: 제조 수율 예측의 복잡성</h2>
+            <p class="mb-8 text-gray-700">성공적인 설계는 끝이 아닌 시작입니다. 수백 단으로 적층되는 3D NAND 공정은 미세한 변수에도 수율이 크게 좌우됩니다. 기존의 통계적 공정 관리(SPC) 방식은 다변수 간의 복잡하고 비선형적인 상호작용을 예측하는 데 명백한 한계를 보이며, 이는 잠재적 손실로 이어집니다.</p>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                 <div class="card">
+                    <h3 class="font-bold text-lg mb-2 text-[#005F73]">다양한 데이터 소스</h3>
+                    <p class="text-5xl mb-2">📊</p>
+                    <p class="text-gray-600">공정, 설비, 계측, 센서 등 수많은 이종 데이터가 실시간으로 발생하지만 통합 분석이 어렵습니다.</p>
+                </div>
+                <div class="card">
+                    <h3 class="font-bold text-lg mb-2 text-[#005F73]">비선형적 상호작용</h3>
+                    <p class="text-5xl mb-2">🕸️</p>
+                    <p class="text-gray-600">하나의 변수가 다른 여러 변수와 복잡하게 얽혀있어, 특정 변수가 수율에 미치는 영향을 파악하기 힘듭니다.</p>
+                </div>
+                <div class="card">
+                    <h3 class="font-bold text-lg mb-2 text-[#005F73]">사후 대응의 한계</h3>
+                    <p class="text-5xl mb-2">⏰</p>
+                    <p class="text-gray-600">문제가 발생한 후에야 원인을 분석하는 기존 방식은 선제적인 수율 저하 방지에 비효율적입니다.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="ai-solution" class="mb-16">
+            <h2 class="text-3xl font-bold mb-6">5. AI의 통찰력: 지능형 수율 예측 및 원인 분석 시스템</h2>
+            <p class="mb-8 text-gray-700">본 발명에서 제안하는 AI 기반 수율 예측 시스템은 공정 전반의 다차원 데이터를 통합 분석하여 정확한 수율을 예측하고, 나아가 수율 저하의 잠재적 원인까지 규명합니다. 이는 단순 예측을 넘어 선제적 공정 최적화를 가능하게 합니다.</p>
+            <div class="grid grid-cols-1 lg:grid-cols-5 gap-8">
+                <div class="lg:col-span-3 card">
+                     <h3 class="text-xl font-bold text-center mb-4">AI 수율 예측 시스템 vs. 기존 방식</h3>
+                    <div class="chart-container h-96">
+                        <canvas id="yieldPredictionChart"></canvas>
+                    </div>
+                    <p class="text-sm text-gray-600 mt-4 text-center">고도화된 AI 모델은 다양한 데이터를 통합 분석하여, 기존 통계 방식(SPC)이나 단순 ML 모델 대비 월등히 높은 예측 정확도를 보여줍니다.</p>
+                </div>
+                <div class="lg:col-span-2 card">
+                    <h3 class="text-xl font-bold text-center mb-4">핵심 데이터 활용 구성</h3>
+                     <div class="chart-container h-80">
+                        <canvas id="dataSourcesChart"></canvas>
+                    </div>
+                     <p class="text-sm text-gray-600 mt-4 text-center">실시간 센서, 공정 파라미터, 계측 데이터 등 다양한 이종 데이터를 통합하여, 기존에는 발견하기 어려웠던 숨은 패턴과 상관관계를 발굴합니다.</p>
                 </div>
             </div>
         </section>
         
-        <!-- Section 3: Feature & Model Evolution -->
-        <section class="mb-20">
-             <h2 class="text-3xl font-bold text-center mb-8 text-text-dark">3. 모델 성능 진화 과정</h2>
-             <div class="bg-bg-card p-8 rounded-xl shadow-lg">
-                <p class="text-center text-text-medium mb-4">모델 성능은 단순히 데이터를 추가하는 것을 넘어, **어떤 특징을 어떻게 추가하고, 라벨링 전략을 어떻게 가져가는지**에 따라 극적으로 변화했습니다. 이 과정은 모델의 근본적인 판별 능력(ROC AUC)과 안정성(표준편차)의 변화를 통해 관찰할 수 있습니다.</p>
-                <div class="chart-container">
-                    <canvas id="performanceEvolutionChart"></canvas>
-                </div>
-                <p class="text-center text-xs mt-2 text-slate-500">라벨 수 증가에 따른 ROC AUC (CV)와 표준편차(에러 바)의 변화 추이</p>
-             </div>
-        </section>
-
-
-        <!-- Section 4: Deep Dive into Model Performance -->
-        <section class="mb-20">
-            <h2 class="text-3xl font-bold text-center mb-8 text-text-dark">4. 주요 모델 심층 비교 분석</h2>
-            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
-                <div class="bg-bg-card p-8 rounded-xl shadow-lg">
-                    <h3 class="font-bold text-lg text-center text-primary-deep mb-4">주요 모델 성능 비교</h3>
-                     <div class="chart-container" style="height:320px; max-height:320px;">
-                        <canvas id="modelComparisonChart"></canvas>
+        <section id="market-impact">
+            <h2 class="text-3xl font-bold mb-6">6. 시장 파급 효과 및 미래 전망</h2>
+            <p class="mb-8 text-gray-700">데이터와 AI 기반의 개발 및 제조 혁신은 원가 경쟁력, 개발 기간, 제품 품질 모든 면에서 압도적인 우위를 제공합니다. 이러한 기술을 선도적으로 도입하는 기업이 미래 낸드플래시 시장의 판도를 결정할 것입니다.</p>
+             <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="text-xl font-bold text-center mb-4">글로벌 낸드플래시 시장 점유율 (가상)</h3>
+                     <div class="chart-container h-80">
+                        <canvas id="marketShareChart"></canvas>
                     </div>
-                    <p class="text-sm mt-4">최고 판별력(AUC)을 보인 **167 라벨 모델**과 가장 안정적인 **269 라벨 모델**의 주요 지표 비교. 269 라벨 모델은 안정성은 높지만, 0.5 임계값 기준에서는 Precision이 다소 하락했습니다.</p>
+                     <p class="text-sm text-gray-600 mt-4 text-center">기술 혁신을 통한 원가 절감 및 품질 안정성은 시장 점유율 확대로 직접 이어지는 가장 강력한 동력입니다.</p>
                 </div>
-                <div class="bg-bg-card p-8 rounded-xl shadow-lg">
-                    <h3 class="font-bold text-lg text-center text-primary-deep mb-4">최종 모델 특징 그룹별 중요도</h3>
-                    <div class="chart-container" style="height:320px; max-height:320px;">
-                        <canvas id="featureImportanceChart"></canvas>
-                    </div>
-                     <p class="text-sm mt-4">**수치형 특징**이 여전히 예측의 가장 중요한 기반이 되지만, **CheckType**과 **Mask Group** 관련 특징들이 추가되며 모델의 예측 논리가 더욱 정교해졌음을 보여줍니다.</p>
-                </div>
-            </div>
-        </section>
-
-
-        <!-- Section 5: Key Findings & Future -->
-        <section>
-            <h2 class="text-3xl font-bold text-center mb-8 text-text-dark">5. 핵심 발견 및 향후 과제</h2>
-            <div class="bg-bg-card p-8 rounded-xl shadow-lg grid grid-cols-1 md:grid-cols-2 gap-8">
-                <div>
-                    <h3 class="font-bold text-lg text-primary-deep mb-2">핵심 발견 (Key Findings)</h3>
-                    <ul class="list-disc list-inside space-y-2 text-sm">
-                        <li>**특징의 질 > 라벨의 양:** 단순한 라벨 추가보다, `CheckType`, `Mask Group`과 같은 **문맥 정보를 제공하는 특징 추가**가 모델 성능 개선에 더 큰 영향을 미쳤습니다.</li>
-                        <li>**라벨링 전략의 중요성:** 특정 구간에 편중된 능동 학습은 오히려 모델 성능을 저해할 수 있습니다. **전체 데이터 분포를 고려한 균형 잡힌 샘플링**이 모델의 안정성과 일반화 성능에 필수적입니다.</li>
-                        <li>**"숨겨진 특징"의 가능성:** 현재 특징 세트로 설명되지 않는 예외 케이스가 존재하며, 이는 논문에서 제안된 바와 같이 더 근본적인 데이터(레이아웃 이미지 등)로부터 **새로운 특징을 발굴해야 할 필요성**을 시사합니다.</li>
-                    </ul>
-                </div>
-                <div>
-                    <h3 class="font-bold text-lg text-primary-deep mb-2">향후 과제 (The Path Forward)</h3>
-                     <ul class="list-disc list-inside space-y-2 text-sm">
-                        <li>**새로운 특징 공학:** PRIME에서 계산된 CSR 영향력(`Area_rule`)이나, `err_portion` 지표를 재검토하여 모델에 추가하고 성능을 검증합니다.</li>
-                        <li>**모델 최적화:** 충분한 라벨 데이터 확보 후, 하이퍼파라미터 튜닝을 통해 현재 모델의 잠재력을 최대한 끌어냅니다.</li>
-                        <li>**운영 지점 설정:** "Chain 탐색"이라는 최종 목표에 가장 적합하도록 **분류 임계값을 조정**하여 Precision과 Recall의 최적 균형점을 찾습니다.</li>
-                        <li>**앙상블 모델 재탐색:** 단일 모델 성능이 한계에 도달했을 때, 더 정교한 규칙을 적용한 앙상블 모델을 다시 고려합니다.</li>
+                 <div class="card flex flex-col justify-center">
+                    <h3 class="text-xl font-bold mb-4">핵심 경쟁력 강화</h3>
+                    <ul class="space-y-4">
+                        <li class="flex items-start">
+                            <span class="text-green-500 mr-3 text-2xl">✔</span>
+                            <div>
+                                <h4 class="font-bold text-lg">개발 기간 단축 (Time-to-Market)</h4>
+                                <p class="text-gray-600">LDR 분석 자동화로 차세대 제품 출시를 가속화합니다.</p>
+                            </div>
+                        </li>
+                         <li class="flex items-start">
+                            <span class="text-green-500 mr-3 text-2xl">✔</span>
+                            <div>
+                                <h4 class="font-bold text-lg">원가 경쟁력 극대화</h4>
+                                <p class="text-gray-600">효과적인 CSR과 수율 향상을 통해 압도적인 원가 우위를 확보합니다.</p>
+                            </div>
+                        </li>
+                         <li class="flex items-start">
+                             <span class="text-green-500 mr-3 text-2xl">✔</span>
+                            <div>
+                                <h4 class="font-bold text-lg">품질 및 신뢰성 향상</h4>
+                                <p class="text-gray-600">데이터 기반의 선제적 리스크 관리를 통해 최고 수준의 제품 품질을 달성합니다.</p>
+                            </div>
+                        </li>
                     </ul>
                 </div>
             </div>
         </section>
+
     </div>
 
     <script>
-        // --- Helper Function ---
-        const wrapLabel = (label, maxLength) => {
-            const words = label.split(' ');
-            const lines = [];
-            let currentLine = '';
-            for (const word of words) {
-                if ((currentLine + word).length > maxLength) {
-                    lines.push(currentLine.trim());
-                    currentLine = '';
-                }
-                currentLine += word + ' ';
-            }
-            lines.push(currentLine.trim());
-            return lines;
-        };
-        
-        const tooltipTitleCallback = (tooltipItems) => {
-            const item = tooltipItems[0];
-            let label = item.chart.data.labels[item.dataIndex];
-            if (Array.isArray(label)) {
-              return label.join(' ');
-            } else {
-              return label;
-            }
-        };
+        document.addEventListener('DOMContentLoaded', () => {
 
-        // --- Chart 1: Performance Evolution ---
-        const ctx1 = document.getElementById('performanceEvolutionChart');
-        if (ctx1) {
-            const performanceData = {
-                labels: ['167 Labels\n(Initial Best)', '212 Labels\n(Biased Sampling)', '269 Labels\n(Balanced Sampling)'],
-                datasets: [{
-                    label: 'ROC AUC (CV)',
-                    data: [0.8857, 0.8394, 0.8480],
-                    borderColor: '#008DDA', // Using direct hex code
-                    backgroundColor: '#008DDA', // Using direct hex code
-                    tension: 0.1,
-                    borderWidth: 3,
-                    pointRadius: 6,
-                    pointHoverRadius: 8
-                }, {
-                    label: 'Standard Deviation',
-                    data: [
-                        [0.8857 - 0.0692, 0.8857 + 0.0692],
-                        [0.8394 - 0.0545, 0.8394 + 0.0545],
-                        [0.8480 - 0.0416, 0.8480 + 0.0416]
-                    ],
-                    backgroundColor: 'rgba(0, 141, 218, 0.2)',
-                    borderWidth: 0,
-                    pointRadius: 0,
-                    type: 'bar',
-                    barPercentage: 0.15,
-                    yAxisID: 'y'
-                }]
+            const COLORS = {
+                blue1: '#005F73',
+                blue2: '#0A9396',
+                blue3: '#94D2BD',
+                yellow: '#E9D8A6',
+                orange1: '#EE9B00',
+                orange2: '#CA6702',
+                red1: '#AE2012',
+                red2: '#9B2226',
+                gray: '#6c757d'
             };
 
-            new Chart(ctx1, {
-                type: 'line',
-                data: performanceData,
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: false,
-                            min: 0.75,
-                            max: 0.95,
-                            title: {
-                                display: true,
-                                text: 'ROC AUC Score'
-                            }
-                        },
-                        x: {
-                            ticks: {
-                                callback: function(value, index, values) {
-                                    const label = this.getLabelForValue(value);
-                                    return label.split('\n');
-                                }
-                            }
-                        }
-                    },
-                    plugins: {
-                        tooltip: {
-                            callbacks: {
-                                title: tooltipTitleCallback,
-                                label: function(context) {
-                                    if (context.dataset.label === 'Standard Deviation') return null;
-                                    let label = context.dataset.label || '';
-                                    if (label) {
-                                        label += ': ';
-                                    }
-                                    if (context.parsed.y !== null) {
-                                        label += context.parsed.y.toFixed(4);
-                                    }
-                                    const stdDevData = context.chart.data.datasets[1].data[context.dataIndex];
-                                    if(stdDevData) {
-                                       const stdDev = ((stdDevData[1] - stdDevData[0])/2).toFixed(4);
-                                       return [label, `  (Std Dev: ±${stdDev})`];
-                                    }
+            const tooltipCallback = {
+                plugins: {
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                if (Array.isArray(label)) {
+                                    return label.join(' ');
+                                } else {
                                     return label;
                                 }
                             }
-                        },
-                        legend: {
-                            display: false
                         }
                     },
-                    interaction: {
-                        mode: 'index',
-                        intersect: false,
-                    },
-                }
-            });
-        }
-
-        // --- Chart 2: Model Comparison ---
-        const ctx2 = document.getElementById('modelComparisonChart');
-        if (ctx2) {
-             const modelCompData = {
-                labels: ['Precision', 'Recall', 'F1-Score', 'ROC AUC'],
-                datasets: [{
-                    label: '167 Labels (Best AUC Model)',
-                    data: [0.8247, 0.7412, 0.7672, 0.8857],
-                    backgroundColor: 'rgba(0, 141, 218, 0.7)', // primary-bright
-                    borderColor: '#008DDA', // Using direct hex code
-                    borderWidth: 1
-                }, {
-                    label: '269 Labels (Balanced Model)',
-                    data: [0.7838, 0.8096, 0.7957, 0.8480],
-                    backgroundColor: 'rgba(65, 201, 226, 0.7)', // accent-cyan
-                    borderColor: '#41C9E2', // Using direct hex code
-                    borderWidth: 1
-                }]
-            };
-            new Chart(ctx2, {
-                type: 'bar',
-                data: modelCompData,
-                options: {
-                     responsive: true,
-                    maintainAspectRatio: false,
-                    scales: {
-                        y: {
-                            beginAtZero: false,
-                            min: 0.7,
-                            title: {
-                                display: true,
-                                text: 'Performance Score'
-                            }
-                        }
-                    },
-                     plugins: {
-                        tooltip: {
-                            callbacks: { title: tooltipTitleCallback }
-                        }
-                    },
-                     indexAxis: 'x',
-                }
-            });
-        }
-
-        // --- Chart 3: Feature Importance by Group ---
-        const ctx3 = document.getElementById('featureImportanceChart');
-        if (ctx3) {
-            const featureData = {
-                labels: ['수치형 특징 (6개)', 'CheckType OHE (~7개)', 'Mask Group OHE (~7개)', 'Is_Same_Mask (1개)'],
-                datasets: [{
-                    label: 'Average Feature Importance',
-                    data: [
-                        0.153+0.140+0.125+0.140+0.124+0.115, // Sum of 6 numerical
-                        0.047+0.022+0.019, // Sum of 3 CheckType
-                        0.024+0.017+0.016+0.009+0.005, // Sum of 5 Mask Group
-                        0.023 // Is_Same_Mask
-                    ],
-                    backgroundColor: [
-                        '#004AAD',      // --color-primary-deep
-                        '#008DDA',      // --color-primary-bright
-                        '#41C9E2',      // --color-accent-cyan
-                        '#ACE2E1'       // --color-accent-light
-                    ]
-                }]
-            };
-            new Chart(ctx3, {
-                type: 'doughnut',
-                data: featureData,
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: false,
-                    plugins: {
-                        legend: {
-                            position: 'top',
-                        },
-                        tooltip: {
-                             callbacks: {
-                                label: function(context) {
-                                    let label = context.label || '';
-                                    if (label) {
-                                        label += ': ';
-                                    }
-                                    const total = context.chart.data.datasets[0].data.reduce((a, b) => a + b, 0);
-                                    const value = context.parsed;
-                                    const percentage = ((value / total) * 100).toFixed(1);
-                                    return `${label} ${percentage}%`;
-                                }
+                    legend: {
+                        labels: {
+                            font: {
+                                family: "'Noto Sans KR', sans-serif",
                             }
                         }
                     }
+                },
+                 scales: {
+                    x: {
+                        ticks: {
+                            font: { family: "'Noto Sans KR', sans-serif" }
+                        },
+                        grid: { display: false }
+                    },
+                    y: {
+                        ticks: {
+                            font: { family: "'Noto Sans KR', sans-serif" }
+                        },
+                         grid: { color: '#e9ecef' }
+                    }
+                },
+                maintainAspectRatio: false,
+                responsive: true,
+            };
+
+            const wrapLabel = (label, maxLength) => {
+                if (typeof label !== 'string' || label.length <= maxLength) {
+                    return label;
+                }
+                const words = label.split(' ');
+                const lines = [];
+                let currentLine = '';
+                for (const word of words) {
+                    if ((currentLine + ' ' + word).trim().length > maxLength && currentLine.length > 0) {
+                        lines.push(currentLine);
+                        currentLine = word;
+                    } else {
+                        currentLine = (currentLine + ' ' + word).trim();
+                    }
+                }
+                if (currentLine.length > 0) {
+                    lines.push(currentLine);
+                }
+                return lines;
+            };
+
+            const marketGrowthData = {
+                labels: ['2022', '2023', '2024', '2025(E)', '2026(E)', '2027(E)'],
+                datasets: [{
+                    label: '시장 규모 (십억 달러)',
+                    data: [65, 72, 80, 89, 98, 110],
+                    borderColor: COLORS.blue2,
+                    backgroundColor: 'rgba(10, 147, 150, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            };
+            new Chart(document.getElementById('marketGrowthChart'), {
+                type: 'line',
+                data: marketGrowthData,
+                options: tooltipCallback
+            });
+
+            const primeDataRaw = {
+                'MIN_SPACE_OF_GATE': 95,
+                'MIN_ENCLOSURE_OF_CONTACT': 88,
+                'MIN_WIDTH_OF_METAL1': 75,
+                'GATE_TO_ACTIVE_OVERLAP': 72,
+                'MIN_PITCH_OF_BITLINE': 65,
+                'CONTACT_TO_METAL_SPACING': 58,
+                'DEEP_NWELL_SPACING': 45,
+            };
+            const primeLabels = Object.keys(primeDataRaw).map(label => wrapLabel(label.replace(/_/g, ' ').toLowerCase().replace(/\b\w/g, c => c.toUpperCase()), 16));
+            const primeValues = Object.values(primeDataRaw);
+            
+            new Chart(document.getElementById('primeChart'), {
+                type: 'bar',
+                data: {
+                    labels: primeLabels,
+                    datasets: [{
+                        label: 'CSR 영향력 지수 (Area_rule)',
+                        data: primeValues,
+                        backgroundColor: COLORS.orange1,
+                        borderColor: COLORS.orange2,
+                        borderWidth: 1
+                    }]
+                },
+                options: { ...tooltipCallback, indexAxis: 'y' }
+            });
+
+            const yieldPredictionData = {
+                labels: ['1분기', '2분기', '3분기', '4분기'],
+                datasets: [
+                    {
+                        label: 'AI 수율 예측 시스템',
+                        data: [95.2, 96.1, 95.8, 96.5],
+                        backgroundColor: COLORS.blue2,
+                        borderRadius: 4,
+                    },
+                    {
+                        label: '단순 ML 모델',
+                        data: [88.5, 89.2, 87.9, 90.1],
+                        backgroundColor: COLORS.blue3,
+                        borderRadius: 4,
+                    },
+                    {
+                        label: '기존 SPC 방식',
+                        data: [75.3, 72.8, 78.1, 76.4],
+                        backgroundColor: COLORS.gray,
+                         borderRadius: 4,
+                    }
+                ]
+            };
+            new Chart(document.getElementById('yieldPredictionChart'), {
+                type: 'bar',
+                data: yieldPredictionData,
+                options: {
+                    ...tooltipCallback,
+                    scales: {
+                        y: {
+                            beginAtZero: false,
+                            min: 60,
+                            title: { display: true, text: '예측 정확도 (%)' }
+                        },
+                        x: { grid: { display: false } }
+                    }
                 }
             });
-        }
 
+            const dataSourcesData = {
+                labels: ['실시간 센서 데이터', '공정 파라미터 (Recipe)', '인라인 계측 데이터', '레이아웃 특징 정보', '기타'],
+                datasets: [{
+                    label: '데이터 소스',
+                    data: [40, 25, 20, 10, 5],
+                    backgroundColor: [
+                        COLORS.blue1,
+                        COLORS.blue2,
+                        COLORS.blue3,
+                        COLORS.orange1,
+                        COLORS.yellow
+                    ],
+                    hoverOffset: 4
+                }]
+            };
+            new Chart(document.getElementById('dataSourcesChart'), {
+                type: 'doughnut',
+                data: dataSourcesData,
+                options: { ...tooltipCallback, scales: {} }
+            });
+
+            const marketShareData = {
+                labels: ['자사 (기술 선도)', 'A사', 'B사', 'C사', '기타'],
+                datasets: [{
+                    label: '시장 점유율',
+                    data: [42, 25, 18, 10, 5],
+                    backgroundColor: [
+                        COLORS.blue2,
+                        COLORS.blue3,
+                        COLORS.yellow,
+                        COLORS.orange1,
+                        COLORS.gray,
+                    ],
+                    hoverOffset: 4
+                }]
+            };
+            new Chart(document.getElementById('marketShareChart'), {
+                type: 'pie',
+                data: marketShareData,
+                options: { ...tooltipCallback, scales: {} }
+            });
+        });
     </script>
-
 </body>
 </html>
